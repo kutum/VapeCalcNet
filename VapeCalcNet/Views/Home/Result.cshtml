@@ -1,0 +1,71 @@
+﻿@model VapeCalc.Models.ResultMix
+@{
+    ViewData["Title"] = "Result";
+}
+
+<table>
+    <tr>
+        <th>
+            <img src="@Url.Content("~/Content/img/vape-liquid128.png")" />
+        </th>
+        <th colspan="2">
+            Результат
+        </th>
+    <tr />
+    <tr>
+        <td>
+            <img src="@Url.Content("~/Content/img/pipetePG.png")" />
+        </td>
+        <td>
+            @Html.Label("Пропиленгликоля (мл)")
+        </td>
+        <td>
+            @Html.DisplayFor(x => x.PG)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="@Url.Content("~/Content/img/pipeteVG.png")" />
+        </td>
+        <td>
+            @Html.Label("Глицерина (мл)")
+        </td>
+        <td>
+            @Html.DisplayFor(x => x.VG)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="@Url.Content("~/Content/img/pipeteNic.png")" />
+        </td>
+        <td>
+            @Html.Label("Никотина (мл)")
+        </td>
+        <td>
+            @Html.DisplayFor(x => x.Nic)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="@Url.Content("~/Content/img/pipeteH2O.png")" />
+        </td>
+        <td>
+            @Html.Label("Воды (мл)")
+        </td>
+        <td>
+            @Html.DisplayFor(x => x.H20)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="@Url.Content("~/Content/img/pipeteAroma.png")" />
+        </td>
+        <td>
+            @Html.Label("Ароматизаторов (мл)")
+        </td>
+        <td>
+            @Html.DisplayFor(x => x.Aroma)
+        </td>
+    </tr>
+</table>
+

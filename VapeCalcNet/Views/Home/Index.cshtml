@@ -1,0 +1,134 @@
+﻿@model VapeCalc.Models.EnterMix
+
+@{
+    ViewData["Title"] = "VapeCalc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body>
+    <div style="overflow:hidden;">
+        <div style="float: left;">
+            <table>
+                <tr>
+                    <th>
+                        <img src="@Url.Content("~/Content/img/cbd128.png")" />
+                    </th>
+                    <th colspan="2">
+                        Расчёт жидкости электронных сигарет
+                    </th>
+                <tr />
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/Content/img/flask64.png")" />
+                    </td>
+                    <td>
+                        @Html.Label("Пропиленгликоля (%)")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.PG, new { htmlAttributes = new { style = "width: 50px;", @type = "number", @min = "0", @step = "0.1", @value = "0"}})
+                        @Html.ValidationMessageFor(model => model.PG)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/Content/img/flask64VG.png")" />
+                    </td>
+                    <td>
+                        @Html.Label("Глицерина (%)")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.VG, new { htmlAttributes = new { style = "width: 50px", @type = "number", @min = "0", @step = "0.1", @value = "0" } })
+                        @Html.ValidationMessageFor(model => model.VG)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/Content/img/flask64H20.png")" />
+                    </td>
+                    <td>
+                        @Html.Label("Воды (%)")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.H2O, new { htmlAttributes = new { style = "width: 50px", @type = "number", @min = "0", @step = "0.1", @value = "0" } })
+                        @Html.ValidationMessageFor(model => model.H2O)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/Content/img/flask64Aroma.png")" />
+                    </td>
+                    <td>
+                        @Html.Label("Ароматизаторов (%)")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Aroma, new { htmlAttributes = new { style = "width: 50px", @type = "number", @min = "0", @step = "0.1", @value = "0" } })
+                        @Html.ValidationMessageFor(model => model.Aroma)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/Content/img/flask64Nic.png")" />
+                    </td>
+                    <td>
+                        @Html.Label("Никотина на выходе (мг/мл)")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Nic, new { htmlAttributes = new { style = "width: 50px", @type = "number", @min = "0", @step = "0.1", @value = "0" } })
+                        @Html.ValidationMessageFor(model => model.Nic)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/Content/img/flask64all.png")" />
+                    </td>
+                    <td>
+                        @Html.Label("Требуемый объем (мл)")
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Volume, new { htmlAttributes = new { style = "width: 50px", @type = "number", @min = "0", @step = "0.1", @value = "0" } })
+                        @Html.ValidationMessageFor(model => model.Volume)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center">
+                        <input type="submit" id="loadPartialView" value="Расчёт" class="button15" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="float:left;  padding-left:40px" id="Display"></div>
+    </div> 
+   
+
+    <script type="text/javascript">
+        $("#loadPartialView").click(function () {
+
+            var PG = parseFloat($("#PG").val());
+            var VG = parseFloat($("#VG").val());
+            var H2O = parseFloat($("#H2O").val());
+            var Aroma = parseFloat($("#Aroma").val());
+            var Nic = parseFloat($("#Nic").val());
+            var Volume = parseFloat($("#Volume").val());
+            var NicMix = 100;
+
+            if ((PG + VG + H2O) == 100)
+            {
+                var url = '@Url.Action("LoadPartialView","Home")?PG=' + PG + '&VG=' + VG + '&H2O=' + H2O + '&Aroma=' + Aroma + '&Nic=' + Nic + '&Volume=' + Volume + '&NicMix=' + NicMix;
+                $.get(url, {}, function (response) {
+                    $("#Display").html(response);
+
+                });
+            }
+            else
+            {
+                alert("В сумме PG + VG + H20 должно быть 100%");
+            }
+    });
+    </script>
+
+    
+ 
+
+</body>
+
+
+
