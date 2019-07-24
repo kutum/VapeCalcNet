@@ -2,13 +2,12 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8" name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
+    <link href="@Url.Content("~/Content/css/TableStyle.css")" rel="stylesheet" />
 </head>
 <body>
-    @Scripts.Render("~/bundles/jquery")
-
+    <script src="@Url.Content("~/Scripts/jquery.min.js")"></script>
     <div>
         @RenderBody()
     </div>

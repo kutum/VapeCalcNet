@@ -13,7 +13,6 @@ namespace VapeCalcNet
         protected void Application_Start()
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }
